@@ -25,14 +25,14 @@ import Header from "./components/Header.vue"
         </div>
       </div>
     </div> -->
-
-    <!-- partial:partials/_navbar.html -->
     <Header />
-    <!-- partial -->
     <div class="container-fluid page-body-wrapper">
       <Sidebar/>
-    <!-- partial main-->
-      <Footer/>
+      <div class="main-panel">
+        <div class="content-wrapper">
+        </div>
+        <Footer/>
+      </div>
     </div>
   </div>
 </template>
