@@ -1,0 +1,11 @@
+/* @import './base.css'; */
+/* ../src/assets/vendors/mdi/css/materialdesignicons.min.css"
+../src/assets/vendors/css/vendor.bundle.base.css"
+../src/assets/css/style.css"
+../src/assets/images/favicon.ico"  */
+
+
+@import "./vendors/mdi/css/materialdesignicons.min.css";
+@import "./vendors/css/vendor.bundle.base.css";
+@import "./css/style.css";
+/* @import "./images/favicon.ico" */
