@@ -1,10 +1,20 @@
 <script setup>
 import Header from "@/components/Header.vue";
 import Footer from "@/components/Footer.vue";
+import {userInfoStore} from "@/store/user";
+
+const id = sessionStorage.getItem("id")
+const userStore = userInfoStore();
+console.log(id)
+if (id) {
+  userStore.account.id = id;
+}
+
 </script>
 
 <template>
   <Header/>
+  {{userStore.account.id}}
   <RouterView/>
   <Footer/>
 </template>
