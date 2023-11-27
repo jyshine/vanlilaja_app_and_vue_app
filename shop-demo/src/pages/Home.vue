@@ -3,6 +3,9 @@ import {ref} from "vue";
 import Card from "@/components/Card.vue";
 import axios from "axios";
 import router from "@/router";
+import {userInfoStore} from "@/store/user";
+
+const userInfo = userInfoStore()
 
 const items = ref([]);
 axios.get("/api/items")
@@ -34,7 +37,7 @@ const signup = () => {
 <template>
   <main>
     <div class="home">
-      <section class="py-5 text-center container">
+      <section class="py-5 text-center container" v-if="!userInfo.account.token">
         <div class="row py-lg-5">
           <div class="col-lg-6 col-md-8 mx-auto">
             <h1 class="fw-light">Shop Demo</h1>

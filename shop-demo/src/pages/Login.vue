@@ -14,26 +14,25 @@ const state = reactive({
 const userStore = userInfoStore();
 const submit = () => {
   axios.post("/api/account/signin", state.form)
-      .then(({data}) => {
-        userStore.setAccount(data)
-        sessionStorage.setItem("token", data)
+      .then((data) => {
+        console.log(data.data);
+        userStore.setAccount(data.data);
+        sessionStorage.setItem("token", data.data);
 
-        router.push({path: "/"})
         window.alert("로그인 성공")
+        router.push({path: "/"})
       })
       .catch((error) => {
         console.log(error)
         window.alert("로그인 실패")
       });
-
-  // window.alert("test")
 }
 
 </script>
 
 <template>
   <div class="form-signin w-100 m-auto">
-    <form>
+<!--    <form>-->
       <img class="mb-4" src="/img/img1.jpeg" alt="" width="72" height="57">
       <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
 
@@ -54,7 +53,7 @@ const submit = () => {
       </div>
       <button class="btn btn-primary w-100 py-2" @click="submit">Sign in</button>
       <p class="mt-5 mb-3 text-body-secondary">&copy; 2017–2023</p>
-    </form>
+<!--    </form>-->
   </div>
 </template>
 
