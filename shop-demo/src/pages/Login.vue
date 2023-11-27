@@ -10,16 +10,44 @@ const state = reactive({
     password: ""
   }
 })
+const getCookie = (cookieName) => {
+  cookieName += '='
+
+  const cookieData = document.cookie
+  let start = cookieData.indexOf(cookieName)
+  let cookieValue = ''
+
+  if (start !== -1) {
+    start += cookieName.length
+    let end = cookieData.indexOf(';', start)
+    if (end === -1) end = cookieData.length
+    cookieValue = cookieData.substring(start, end)
+  }
+
+  return decodeURIComponent(cookieValue.trim());
+}
 
 const userStore = userInfoStore();
+
+axios.defaults.withCredentials = true;
 const submit = () => {
-  axios.post("/api/account/signin", state.form)
+  // axios.defaults.baseURL = 'http://localhost:8080';
+  // axios.defaults.withCredentials = true;
+  axios.post("/api/account/signin", state.form,{
+  })
       .then((data) => {
-        console.log(data.data);
+
         userStore.setAccount(data.data);
         sessionStorage.setItem("token", data.data);
 
-        window.alert("로그인 성공")
+        console.log("-------");
+        // 서버로부터 설정된 쿠키에 접근
+        console.log(data.headers)
+        console.log(document.cookie);
+        console.log(getCookie("jwt"));
+        console.log("-------");
+
+        window.alert("로그인 성공");
         router.push({path: "/"})
       })
       .catch((error) => {

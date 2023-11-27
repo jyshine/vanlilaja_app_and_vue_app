@@ -19,7 +19,9 @@ export default defineConfig({
       '^/api': {
         target: 'http://localhost:8080',
         // ws: true,
-        changeOrigin: true
+        exposedHeaders: ["set-cookie"],
+        changeOrigin: true,
+        credentials: true,
       }
     }
   },
