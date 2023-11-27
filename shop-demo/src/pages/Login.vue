@@ -13,20 +13,20 @@ const state = reactive({
 
 const userStore = userInfoStore();
 const submit = () => {
-  axios.post("/api/account/login", state.form)
+  axios.post("/api/account/signin", state.form)
       .then(({data}) => {
-        console.log(data)
-
         userStore.setAccount(data)
-        sessionStorage.setItem("id", data)
+        sessionStorage.setItem("token", data)
 
         router.push({path: "/"})
-        window.alert("로그인 완료")
+        window.alert("로그인 성공")
       })
       .catch((error) => {
         console.log(error)
         window.alert("로그인 실패")
       });
+
+  // window.alert("test")
 }
 
 </script>
@@ -52,7 +52,7 @@ const submit = () => {
           Remember me
         </label>
       </div>
-      <button class="btn btn-primary w-100 py-2" @click="submit()">Sign in</button>
+      <button class="btn btn-primary w-100 py-2" @click="submit">Sign in</button>
       <p class="mt-5 mb-3 text-body-secondary">&copy; 2017–2023</p>
     </form>
   </div>

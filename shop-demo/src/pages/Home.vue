@@ -2,18 +2,32 @@
 import {ref} from "vue";
 import Card from "@/components/Card.vue";
 import axios from "axios";
+import router from "@/router";
 
 const items = ref([]);
 axios.get("/api/items")
-    .then(({data})=>{
+    .then(({data}) => {
       items.value = data
       console.log(items)
       console.log(items.value)
       console.log(items.value[0])
     })
-    .catch((error)=>{
+    .catch((error) => {
       console.log(error)
-    })
+    });
+
+const signup = () => {
+  axios.post("/api/account/signup")
+      .then(({data}) => {
+        console.log(data)
+        router.push({path: "/login"})
+        window.alert("회원가입 완료 : "+ data)
+      })
+      .catch((error) => {
+        console.log(error)
+        window.alert("회원 가입 실패")
+      });
+};
 
 </script>
 
@@ -23,11 +37,11 @@ axios.get("/api/items")
       <section class="py-5 text-center container">
         <div class="row py-lg-5">
           <div class="col-lg-6 col-md-8 mx-auto">
-            <h1 class="fw-light">Album example</h1>
-            <p class="lead text-body-secondary">Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don’t simply skip over it entirely.</p>
+            <h1 class="fw-light">Shop Demo</h1>
+            <p class="lead text-body-secondary">Shop Demo Site</p>
             <p>
-              <a href="#" class="btn btn-primary my-2">Main call to action</a>
-              <a href="#" class="btn btn-secondary my-2">Secondary action</a>
+              <a href="/login" class="btn btn-primary my-2">로그인</a>
+              <button @click="signup" class="btn btn-secondary my-2">회원가입</button>
             </p>
           </div>
         </div>

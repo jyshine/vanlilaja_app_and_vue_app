@@ -6,8 +6,8 @@ import router from "@/router";
 const userInfo = userInfoStore()
 
 const logout = () => {
-  userInfo.account.id = null;
-  sessionStorage.removeItem("id");
+  userInfo.account.token = null;
+  sessionStorage.removeItem("token");
   router.push({path: "/"});
 
 }
@@ -36,7 +36,7 @@ const logout = () => {
             <ul class="list-unstyled">
               <li><router-link to="/" class="text-white">메인 화면</router-link></li>
               <li>
-                <router-link to="/login" class="text-white" v-if="userInfo.account.id===null">로그인</router-link>
+                <router-link to="/login" class="text-white" v-if="userInfo.account.token===null">로그인</router-link>
                 <a @click="logout" class="text-white"  v-else>로그아웃</a>
               </li>
             </ul>

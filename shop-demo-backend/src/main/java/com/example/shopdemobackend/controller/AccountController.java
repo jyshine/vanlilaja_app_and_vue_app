@@ -47,7 +47,7 @@ public class AccountController {
         member.setName("User" + atomicInteger.get());
         member.setRole(Collections.singleton(Role.USER));
         memberRepository.save(member);
-        return member.getUsername();
+        return member.getEmail();
     }
 
 

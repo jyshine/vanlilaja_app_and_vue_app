@@ -3,18 +3,18 @@ import Header from "@/components/Header.vue";
 import Footer from "@/components/Footer.vue";
 import {userInfoStore} from "@/store/user";
 
-const id = sessionStorage.getItem("id")
+const token = sessionStorage.getItem("token")
 const userStore = userInfoStore();
-console.log(id)
-if (id) {
-  userStore.account.id = id;
+console.log(token)
+if (token) {
+  userStore.account.token = token;
 }
 
 </script>
 
 <template>
   <Header/>
-  {{userStore.account.id}}
+  {{userStore.account.token}}
   <RouterView/>
   <Footer/>
 </template>
