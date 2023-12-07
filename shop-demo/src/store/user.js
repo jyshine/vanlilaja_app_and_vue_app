@@ -1,7 +1,5 @@
 import {ref} from "vue";
 import {defineStore} from "pinia";
-
-
 export const userInfoStore = defineStore({
     id: 'userInfoStore', // unique id for the store
     state: () => ({
